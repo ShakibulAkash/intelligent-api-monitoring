@@ -1,0 +1,60 @@
+
+### TEST 1: Check scheduler status
+
+GET http://localhost:3000/automation/status
+
+
+### TEST 2: Check demo patient API
+
+GET http://localhost:3000/demo/patient
+
+
+### TEST 3: Check demo appointment API
+
+GET http://localhost:3000/demo/appointment
+
+
+### TEST 4: Check demo billing API
+
+GET http://localhost:3000/demo/billing
+
+
+### TEST 5: Read automatically generated alerts
+
+GET http://localhost:3000/alerts
+
+
+### TEST 6: Read monitoring history
+
+GET http://localhost:3000/checks
+
+
+### TEST 7: Recover appointment API
+
+POST http://localhost:3000/demo/appointment/recover
+
+
+### TEST 8: Make appointment API fail again
+
+POST http://localhost:3000/demo/appointment/fail
+
+
+### TEST 9: Manual monitoring still works
+
+POST http://localhost:3000/monitor
+Content-Type: application/json
+
+[
+  {
+    "api_name": "PatientDataAPI",
+    "response_time_ms": 1200,
+    "status_code": 200,
+    "records_returned": 50
+  },
+  {
+    "api_name": "AppointmentAPI",
+    "response_time_ms": 5500,
+    "status_code": 500,
+    "records_returned": 0
+  }
+]

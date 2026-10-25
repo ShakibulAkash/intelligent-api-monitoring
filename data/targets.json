@@ -1,0 +1,19 @@
+
+{
+  "interval_seconds": 30,
+  "timeout_ms": 7000,
+  "targets": [
+    {
+      "api_name": "DemoPatientAPI",
+      "url": "http://127.0.0.1:3000/demo/patient"
+    },
+    {
+      "api_name": "DemoAppointmentAPI",
+      "url": "http://127.0.0.1:3000/demo/appointment"
+    },
+    {
+      "api_name": "DemoBillingAPI",
+      "url": "http://127.0.0.1:3000/demo/billing"
+    }
+  ]
+}

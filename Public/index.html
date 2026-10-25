@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+
+  <title>PulseMonitor | Intelligent API Monitoring</title>
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <script src="/app.js" defer></script>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <div class="brand">
+        <div class="brand-icon">P</div>
+
+        <div>
+          <div class="brand-name">PulseMonitor</div>
+          <div class="brand-subtitle">API INTELLIGENCE</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+
+        <span id="serverStatus" class="server-status">
+          <span class="status-dot"></span>
+          Checking server...
+        </span>
+
+        <button id="refreshBtn"
+                class="btn btn-outline"
+                type="button">
+          Refresh Data
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+
+    <!-- PAGE HEADING -->
+    <section class="page-heading">
+
+      <div class="eyebrow">MONITORING OVERVIEW</div>
+
+      <h1>API Health Dashboard</h1>
+
+      <p>
+        Monitor API responses, identify anomalies,
+        and review intelligent operational alerts.
+      </p>
+
+      <div class="last-updated">
+        Last updated:
+        <span id="lastUpdated">Not yet updated</span>
+      </div>
+
+    </section>
+
+    <!-- SUMMARY CARDS -->
+    <section class="stats-grid"
+             aria-label="Monitoring statistics">
+
+      <div class="stat-card">
+        <div class="stat-label">Active Alerts</div>
+        <div id="totalAlerts" class="stat-value">0</div>
+        <div class="stat-description">
+          Currently unresolved issues
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Critical Alerts</div>
+        <div id="criticalAlerts"
+             class="stat-value critical-text">0</div>
+        <div class="stat-description">
+          High-priority API failures
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Warning Alerts</div>
+        <div id="warningAlerts"
+             class="stat-value warning-text">0</div>
+        <div class="stat-description">
+          Performance and data issues
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Recent Checks</div>
+        <div id="checksCount" class="stat-value">0</div>
+        <div class="stat-description">
+          Checks in latest history results
+        </div>
+      </div>
+
+    </section>
+
+    <!-- MONITORING AND ALERTS -->
+    <section class="content-grid">
+
+      <!-- API INPUT PANEL -->
+      <div class="panel">
+
+        <div class="panel-header">
+          <div>
+            <h2>API Monitoring</h2>
+            <p>
+              Submit API responses for anomaly detection.
+            </p>
+          </div>
+
+          <span class="panel-tag">POST /monitor</span>
+        </div>
+
+        <div class="panel-body">
+
+          <label for="payloadInput" class="input-label">
+            API Response Data (JSON)
+          </label>
+
+          <textarea
+            id="payloadInput"
+            rows="17"
+            spellcheck="false"
+            aria-describedby="inputHelp"
+          ></textarea>
+
+          <p id="inputHelp" class="helper-text">
+            Enter a JSON array containing 1–100 API responses.
+            Use test data only.
+          </p>
+
+          <div class="button-group">
+
+            <button
+              id="monitorBtn"
+              class="btn btn-primary"
+              type="button">
+              Analyze Responses
+            </button>
+
+            <button
+              id="sampleBtn"
+              class="btn btn-outline"
+              type="button">
+              Load Sample
+            </button>
+
+          </div>
+
+          <div
+            id="requestFeedback"
+            class="feedback"
+            role="status"
+            aria-live="polite">
+          </div>
+
+          <div class="info-note">
+            AI integration is available, but fallback
+            templates are used while AI is disabled.
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ACTIVE ALERTS PANEL -->
+      <div class="panel">
+
+        <div class="panel-header">
+          <div>
+            <h2>Active Alerts</h2>
+            <p>
+              Current anomalies stored in SQLite.
+            </p>
+          </div>
+
+          <span class="panel-tag">GET /alerts</span>
+        </div>
+
+        <div id="alertsContainer"
+             class="alerts-container"
+             aria-live="polite">
+
+          <div class="empty-state">
+            Loading alerts...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- MONITORING HISTORY -->
+    <section class="panel history-panel">
+
+      <div class="panel-header">
+        <div>
+          <h2>Recent Monitoring History</h2>
+          <p>
+            The latest 20 API checks, including
+            healthy and abnormal responses.
+          </p>
+        </div>
+
+        <span class="panel-tag">GET /checks</span>
+      </div>
+
+      <div class="table-container">
+        <table>
+
+          <thead>
+            <tr>
+              <th>API Name</th>
+              <th>Response Time</th>
+              <th>HTTP Status</th>
+              <th>Severity</th>
+              <th>Checked At</th>
+            </tr>
+          </thead>
+
+          <tbody id="checksBody">
+            <tr>
+              <td colspan="5">
+                Loading monitoring history...
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      PulseMonitor — Intelligent API Monitoring
+      &amp; Alert System
+      <span>Local Development Dashboard</span>
+    </footer>
+
+  </main>
+
+</body>
+</html>

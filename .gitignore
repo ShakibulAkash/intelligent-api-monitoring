@@ -1,0 +1,27 @@
+
+# Dependencies
+node_modules/
+
+# Secret environment files
+.env
+.env.*
+!.env.example
+
+# SQLite database
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# Application logs
+logs/
+
+# Temporary files
+*.tmp
+*.log
+
+# Test coverage
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
